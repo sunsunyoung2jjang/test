@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+
+* {padding: 0; margin: 0; text-decoration: none; list-style: none;}
+body {background:#368AFF; }
+
+.diiv{
+   position: absolute; right: 0px; bottom: 0px;
+}
+
+.btnmenu{
+   margin-top: 9%;
+   width: 50%;
+   padding: 5%;
+   background: none;
+   border: 3px solid #fff;
+   border-radius: 5px;
+   color: #fff;
+   display: block;
+   font-size: 1.6em;
+   font-weight: bold;
+   margin: 1em auto;
+   position: relative;
+}
+.btnmenu:before {content: ''; width: 0; height: 100%; background: #fff; transition: 0.3s; position: absolute; top:0; left: 0; z-index: -1;}
+.btnmenu:hover {color: #368AFF;}
+.btnmenu:hover:before {width: 100%;}
+
+
+.userhead{
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  text-align: center;
+  color:#FFFFFF;
+  padding: 3px;
+  border-radius: 80px;
+  background-color:#0000C9
+}
+
+.btnnormal {
+  display: block;
+  width:130px;
+  float: right;
+  background: none;
+  border: 3px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin-right: 10px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  position:relative;
+}
+
+.welecomefont {
+  margin: 0 auto;
+  font-family: Verdana, Geneva, Arial, sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.6em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.titlefont {
+   width: 350px; /* 정렬하려는 요소의 넓이를 반드시 지정 */
+   margin: 0 auto;
+   margin-bottom: 5%;
+   font-family: Verdana, Geneva, Arial, sans-serif;
+   color: #fff;
+   text-transform: uppercase;
+   font-size: 2.5em;
+   font-weight: bold;
+   text-align: center;
+   border: 1px solid #FFF;
+   border-radius: 100px;
+   background-color:#368AFF;
+   padding: 3px;
+}
+
+.idpassfont {
+  font-family: Verdana, Geneva, Arial, sans-serif;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 2.0em;
+  font-weight: bold;
+}
+
+.inputtitle {
+  font-family: Verdana, Geneva, Arial, sans-serif;
+  color: black;
+  text-transform: uppercase;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin-bottom: 5%;
+}
+
+.successfont {
+   margin: 0 auto;
+   font-family: Verdana, Geneva, Arial, sans-serif;
+   color: #fff;
+   text-transform: uppercase;
+   font-size: 2.7em;
+  font-weight: bold;
+  text-align: center;
+   padding: 100px 0px;
+}
+
+.checkfont {
+  display: block;
+  width:100px;
+  height: 35px;
+  float: right;
+  background: none;
+  border: 3px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-right: 10px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  position:relative;
+}
+
+@media screen and (max-width: 768px) {
+}
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>main_page</title>
+
+</head>
+<body>
+{%with messages = get_flashed_messages()%}
+     {%if messages %}
+      <script type="text/javascript">
+        alert("{{messages[-1]}}");
+      </script>
+    {%endif%}
+{%endwith%}
+<h2>Log-in</h2><!--로그인화면,로그인 버튼을 누르면 정보들이 /login라우터로 전달됨 -->
+<form name="login" action="login" method="post">
+    <h4>ID</h4>
+    <input type="id" name="user_id" id="user_id" placeholder="ID">
+    <h4>Password</h4>
+    <input type="password" name="user_pw" id="user_pw" placeholder="Password">
+    <input type="submit" value="로그인">
+</form>
+
+<p>
+    <input type="button" value="회원가입" onClick="location.href='join'"/><!--회원가입화면으로 넘어감-->
+</p>
+</body>
+</html>

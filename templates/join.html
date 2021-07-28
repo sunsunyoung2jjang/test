@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>join_page</title>
+</head>
+<body>
+    <h1>회원가입</h1><!--제춣버튼을 누르면 정보가 /store_meminfo라우터로 전달됨 -->
+
+    <form name="login" action="store_meminfo" method="post">
+      ID<br>
+      <input id="user_id" type="text" name="user_ID" placeholder="아이디 입력" >
+      <input type="button" name="user_IDcheck" onclick="check()" value="중복 확인"><!--중복확인을 누르면 script함수 check()를 실행함-->
+      <br>
+      Password<br>
+      <input type="password" name="user_PW" value=""><br>
+<!--      Password 재확인<br>-->
+<!--      <input type="password" name="user_PW2" value="123456">-->
+<!--      <input type="button" name="user_PWcheck" value="비밀번호 재확인">  -->
+      <p>
+          <input type="submit" name="" value="제출">
+      </p>
+    </form>
+
+    <input type='button' value='로그인으로 돌아가기' onClick="location.href='/'"/>
+
+    <form id="duplicate_form" method="post" action="duplicate_id" target="duplicate"><!--/duplicate_id라우터로 id정보를 전달해 아이디중복을 확인-->
+        <input id="checkid" name="checkid" type="hidden" value="">
+    </form>
+
+    <iframe id="duplicate" name="duplicate" width="0" height="0" style="display:none"></iframe>
+    <script>
+        function check(){
+            document.getElementById('checkid').value=document.getElementById('user_id').value
+            document.getElementById('duplicate_form').submit()
+        }
+    </script>
+</body>
+</html>

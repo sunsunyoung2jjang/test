@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+.userhead{
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  text-align: center;
+  color:#FFFFFF;
+}
+p{
+  padding: 3px;
+  border-radius: 80px;
+  background-color:#0000C9
+}
+.rtitle{
+  text-align: center;
+  font-size: 1.3em;
+
+  margin-bottom: 5px;
+}
+
+/*버튼 스타일*/
+.bt{
+  width:300px;
+  background:#368AFF;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:40px;
+  font-size:1.2em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:inherit;
+}
+.bt:hover{
+  background:#fff;
+  color:#368AFF;
+}
+.bt:before,.bt:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background:#368AFF;
+  transition:400ms ease all;
+}
+.bt:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.bt:hover:before,.bt:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+/*내용 중앙*/
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+}
+
+.footer{
+  width:100%;
+   height:inherit;
+   position:fixed;
+   bottom:0;
+   background:#fff;
+   text-align: center;
+   padding-bottom: 10px;
+}
+.price_h{
+  display:inline-block;
+  border:3px solid #C4DEFF;
+  background-color: #C4DEFF;
+}
+
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>recommend_page</title>
+</head>
+<body>
+  <div class=userhead>
+      <p id="user">{{user_id}}님</p>
+    </div>
+    <div class="rtitle">
+    오늘의 추천 종목 <!--추천종목이름 현재가격 -> 예측가격(상승률,하락률) 출력-->
+  </div>
+
+    {% for idx in range(result | length)%}
+    <div class="wrapper" >
+  <div class="content">
+        <div class="price">{{idx+1}}.{{result[idx]['name']}} : {{result[idx]['pre_price']}}원
+          <img src="arrow11.png" alt="arrow_right" width="30px" height="30px" align="center">
+            <div class="price_h">
+           {{result[idx]['tom_price']}}원 ({{result[idx]['percent']}}%)</div>
+         </div>
+      </div>
+    </div>
+    {% endfor %}
+
+<br>
+<footer class="footer">
+    <input class="bt" type='button' value='메뉴로 돌아가기' onClick="location.href='menu'"/>
+</footer>
+</body>
+</html>

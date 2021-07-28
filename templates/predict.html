@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+.userhead{
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  text-align: center;
+  color:#FFFFFF;
+}
+p{
+  padding: 3px;
+  border-radius: 80px;
+  background-color:#0000C9
+}
+
+#btn{
+  border: 0;
+  outline: none;
+  display: block;
+  background:#fff;
+  font-size:1.2em;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+.ptitle{
+  text-align: center;
+  font-size: 1.3em;
+  margin-bottom: 5px;
+}
+
+/*버튼 스타일*/
+.bt{
+  width:300px;
+  background:#368AFF;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:40px;
+  font-size:1.2em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:inherit;
+
+}
+.bt:hover{
+  background:#fff;
+  color:#368AFF;
+}
+.bt:before,.bt:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background:#368AFF;
+  transition:400ms ease all;
+}
+.bt:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.bt:hover:before,.bt:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+.footer{
+  width:100%;
+   height:inherit;
+   position:fixed;
+   bottom:0;
+   background:#fff;
+   text-align: center;
+   padding-bottom: 10px;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>predict_page</title>
+</head>
+<body>
+<p class="userhead">{{user_id}}님</p>
+<div class="ptitle">예측</div><!--버튼형식으로 주식종목들을 출력함--><!--하나의 주식종목 버튼을 클릭하면 predict/<target>라우터로 넘어감,target에는 선택한 버튼의 주식종목이름이 들어감 -->
+    {% for idx in range(result | length)%}
+        <input id="btn" type='button' value={{result[idx]['stock_name']}} onClick="location.href='predict/{{result[idx]['stock_name']}}'"/>
+
+    {% endfor %}
+<br><br>
+<footer class="footer">
+    <input class="bt" type='button' value='메뉴로 돌아가기' onClick="location.href='menu'"/>
+</footer>
+</body>
+</html>

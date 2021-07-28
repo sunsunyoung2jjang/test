@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>menu_page</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+<div class=userhead>
+<p  class="welecomefont">{{user_id}}님</p>
+</div>
+
+<button type='button' class="btnmenu" value='주식종목' onClick="location.href='stock_list.html'">주식종목</button><!--/stock_list라우터로 감-->
+<button type='button' class="btnmenu" value='예측' onClick="location.href='predict.html'">예측</button><!--/predict라우터로 감-->
+<button type='button' class="btnmenu" value='추천' onClick="location.href='recommend.html'">추천</button><!--/recommend라우터로 감-->
+<button type='button' class="btnmenu" value='관심목록' onClick="location.href='my_interestlist.html'">관심목록</button><!--/my_interestlist라우터로 감-->
+
+<div class="diiv">
+<input type='button' class="btnnormal"value='로그아웃' onClick="location.href='logout.html'"/><!--/logout라우터로 감-->
+</div>
+<br><br>
+</body>
+</html>

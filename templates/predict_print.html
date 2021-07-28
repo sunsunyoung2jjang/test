@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+.userhead{
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  text-align: center;
+  color:#FFFFFF;
+}
+p{
+  padding: 3px;
+  border-radius: 80px;
+  background-color:#0000C9
+}
+.sid{
+  text-align: center;
+  font-size:1.5em;
+  font-weight:bold;
+  margin-bottom: 7px;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  font-size: 1.2rem;
+  padding: 1.5rem;
+  border: 3px solid #BCBCBC;
+}
+
+/*버튼 스타일*/
+.bt{
+  width:300px;
+  background:#368AFF;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:40px;
+  font-size:1.2em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:inherit;
+
+}
+.bt:hover{
+  background:#fff;
+  color:#368AFF;
+}
+.bt:before,.bt:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background:#368AFF;
+  transition:400ms ease all;
+}
+.bt:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.bt:hover:before,.bt:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+.footer{
+  width:100%;
+   height:inherit;
+   position:fixed;
+   bottom:0;
+   background:#fff;
+   text-align: center;
+   padding-bottom: 10px;
+}
+#textc{
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>predict_print_page</title>
+</head>
+<body>
+  <p class="userhead">
+{{user_id}}님
+</p>
+<br>
+<div class="sid">{{result['name']}}</div>
+
+<div class="wrapper" >
+<div class="content">
+<div>The previous day's stock price : {{result['pre_price']}}원</div> <!--그전날 종가 출력-->
+<div>Tomorrow's stock price : {{result['tom_price']}}원</div> <!--다음날 예측 종가출력-->
+<div id="textc">
+{% if result['percent']>0 %}
+    <div style="background-color:#0100FF">주식 가격은 {{result['percent']|abs}}% 증가 될 것으로 예상됩니다.</div>
+    <img src="High.png" alt="High_img" width="150px" height="100px" align="center">
+{% elif result['percent']==0 %}
+    <div style="background-color:#1DDB16">주식 가격은 전날과 동일 할 것으로 예상됩니다</div>
+{% else %}
+    <div style="background-color:#ED0000">주식 가격은 {{result['percent']|abs}}% 감소 될 것으로 예상됩니다.</div>
+    <img src="Low.png" alt="Low_img" width="150px" height="100px" align="right">
+{% endif %}
+</div>
+</div>
+</div>
+
+<br>
+<input class="bt" type='button' value='뒤로가기' onClick="location.href='/predict'"/>
+<br><br>
+
+<footer class="footer">
+    <input class="bt" type='button' value='메뉴로 돌아가기' onClick="location.href='menu'"/>
+</footer>
+
+</body>
+</html>

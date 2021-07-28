@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title></title>
+</head>
+<body><!--flash를 통해 전달받은 메세지가 있다면 아래코드 팝업창띄우는 코드 실행-->>
+  {%with messages = get_flashed_messages()%}
+     {%if messages %}
+      <script type="text/javascript">
+        alert("{{messages[-1]}}");
+      </script>
+    {%endif%}
+  {%endwith%}
+</body>
+</html>

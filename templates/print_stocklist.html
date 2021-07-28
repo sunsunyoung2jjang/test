@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+
+@font-face{
+  font-family:'Nanum';
+  src:url("NanumBarunGothic.ttf");
+}
+body{
+  font-family:'Nanum';
+  background-color: #fff;
+}
+.userhead{
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  text-align: center;
+  color:#FFFFFF;
+}
+p{
+  padding: 3px;
+  border-radius: 80px;
+  background-color:#0000C9
+}
+/* 하트 체크박스*/
+.checkbox-container{
+  display: inline;
+}
+[id="heart"] {
+  position: absolute;
+  left: -100vw;
+}
+
+[for="heart"] {
+  color: #000;
+  cursor: pointer;
+  font-size: 1.3em;
+}
+
+[for="heart"]:hover {
+  color: grey;
+}
+
+[for="heart"]::selection {
+  color:inherit;
+  background: transparent;
+}
+
+[for="heart"]::moz-selection {
+  color: #e2264d;
+  background: transparent;
+}
+
+[id="heart"]:checked + label {
+  color: #e2264d;
+  will-change: font-size;
+}
+
+/*버튼 스타일*/
+.bt{
+  width:300px;
+  background:#368AFF;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:40px;
+  font-size:1.2em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:inherit;
+  box-shadow: 5px 2px 7px #BCBCBC;
+}
+.bt:hover{
+  background:#fff;
+  color:#368AFF;
+}
+.bt:before,.bt:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background:#368AFF;
+  transition:400ms ease all;
+}
+.bt:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.bt:hover:before,.bt:hover:after{
+  width:100%;
+}
+.t1{
+  justify-content: center;
+  text-align: center;
+}
+.t2{
+  float: right;
+  padding-top: 4.5px;
+  justify-content: center;
+  text-align: center;
+}
+.footer{
+  width:100%;
+   height:inherit;
+   position:fixed;
+   bottom:0;
+   background:#fff;
+   text-align: center;
+   padding-bottom: 10px;
+}
+.t1{
+  width:180px;
+}
+.t2{
+  display: inline;
+  width:65%;
+  justify-content: left;
+  text-align: left;
+}
+#tt1{
+  position: fixed;
+  right: 5px;
+  bottom:60px;
+}
+.tt2{
+  height: 34px;
+  border-bottom:2px solid #EAEAEA;
+}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>stocklist_page</title>
+    <link rel="stylesheet" href="print2.css?ver=1" type="text/css">
+</head>
+<body>
+{%with messages = get_flashed_messages()%}
+     {%if messages %}
+      <script type="text/javascript">
+        alert("{{messages[-1]}}");
+      </script>
+    {%endif%}
+{%endwith%}
+<div class=userhead>
+    <p>{{user_id}}님</p>
+  </div>
+  <form method="post" action="store_interest"><!--체크한 종목들의 정보를 /store_interest라우터로 넘겨줌 -->
+      {% for idx in range(stocks_info | length)%}
+      <div class="tt2"><!--주식종목들을 체크박스형태로 하나씩 출력해줌,주식종목이름과 현재가격 -->
+          <label><input type="checkbox" name="stock_name" value="{{stocks_info[idx]['name']}}">
+          <div class="t1" style="display:inline;">{{stocks_info[idx]['name']}}</div>
+          <div class="t2" >{{stocks_info[idx]['pre_price']}}원</div>
+          </label>
+      </div>
+      {% endfor %}
+      <input class="bt" id="tt1" type="submit" value="관심종목등록">
+  </form>
+<footer class="footer">
+    <input class="bt" type='button' value='메뉴로 돌아가기' onClick="location.href='menu'"/>
+</footer>
+</body>
+</html>
